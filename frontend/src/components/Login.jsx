@@ -1,21 +1,32 @@
 import React, { useState } from 'react'
 import './style.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 function Login() {
 
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
+  const [redirect , setRedirect] = useState(null)
   
    async function login(e){
      e.preventDefault();
-     await fetch('http://localhost:4000/login',{
+     const response = await fetch('http://localhost:4000/login',{
       method:'POST',
       body:JSON.stringify({username,password}),
       headers : {'Content-Type' : 'application/json'},
       credentials: 'include',
      })
+
+     if(response.ok) {
+        setRedirect(true);
+     } else {
+       alert("Please Register before login / Enter correct credentials");
+     }
    }
+
+    if(redirect) {
+      return <Navigate to={'/'} />
+    }
 
   return (
     <form className="login" onSubmit={login}>
