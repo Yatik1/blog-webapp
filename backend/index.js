@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const User = require('./models/User');
+const jwt = require('jsonwebtoken')
 
 const app = express();
 
 const salt = bcrypt.genSaltSync(10);
+const secret= 'asehbfufvihncugbcb78bicgn8bcr797cby';
 
 app.use(cors());
 app.use(express.json())
@@ -30,5 +32,21 @@ app.post('/register' , async (req,res) => {
         res.status(400).json(e)
     }
 });
+
+app.post('/login' , async (req,res) => {
+    const {username,password} = req.body;
+    const userDoc = await User.findOne({username});
+    const passOk = bcrypt.compareSync(password , userDoc.password);
+    // res.json(passOk)
+    if (passOk) {
+        //login
+        jwt.sign({username , id: userDoc._id}, secret , {} , (err,token) => {
+            if (err) throw err; 
+            res.cookie('token' , token).json('ok');
+        })
+    } else {
+        res.status(400).json('wrong crendentials')
+    }
+})
 
 app.listen(4000)
