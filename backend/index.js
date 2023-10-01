@@ -89,4 +89,9 @@ app.post('/post' , uploadMiddleware.single('file') , async (req,res) => {
   res.json(postDoc)
 })
 
+app.get('/post' , async (req,res) => {
+   const response = await Post.find()
+    res.json(response)
+})
+
 app.listen(4000)
