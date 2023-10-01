@@ -13,7 +13,7 @@ function Post({_id,title,summary,cover,content,createdAt,author}) {
             <div className='texts'>
                 <h2>{title}</h2>
                 <p className='info'>
-                    <a className='author'>Yatik Srivastava</a>
+                    <a className='author'>{author.username}</a>
                     <time>{formatISO9075(new Date(createdAt))}</time>
                 </p>
                 <p className='summary'>{summary}</p>
