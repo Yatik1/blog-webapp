@@ -6,6 +6,7 @@ import Layout from "./components/Layout"
 import Login from './components/Login'
 import Register from "./components/Register";
 import {UserContextProvider} from "./UserContext";
+import CreatePost from './components/CreatePost';
 // import CreatePost from "./pages/CreatePost";
 // import PostPage from "./pages/PostPage";
 // import EditPost from "./pages/EditPost";
@@ -23,7 +24,8 @@ function App() {
       } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route path='/create' element={<CreatePost />} />
+          
         </Route>
       </Routes>
 
