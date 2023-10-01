@@ -8,7 +8,7 @@ function Post({_id,title,summary,cover,content,createdAt,author}) {
     <main>
          <div className='post'>
             <div className='image'>
-                <img src="https://i.pinimg.com/564x/b9/52/bb/b952bb9bb9d4048af66ee2d2321bf6e3.jpg" alt="" />
+                <img src={'http://localhost:4000/' + cover} alt="" />
             </div>
             <div className='texts'>
                 <h2>{title}</h2>
