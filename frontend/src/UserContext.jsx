@@ -8,7 +8,9 @@ export function UserContextProvider({children}) {
     
     return (
        <UserContext.Provider value={{userInfo , setUserInfo}}>
+        
         {children}
+        
        </UserContext.Provider>
     )
 }
