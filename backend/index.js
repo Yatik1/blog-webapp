@@ -44,6 +44,7 @@ app.post('/register' , async (req,res) => {
 });
 
 app.post('/login', async (req,res) => {
+
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
     const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -59,6 +60,7 @@ app.post('/login', async (req,res) => {
     } else {
       res.status(400).json('wrong credentials');
     }
+    
   });
 
 app.get("/profile", (req,res) => {
