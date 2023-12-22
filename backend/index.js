@@ -15,7 +15,7 @@ dotenv.config();
 
 const app = express();
 
-const PORT = 4000
+const PORT = 4000 || process.env.PORT
 
 const salt = bcrypt.genSaltSync(10);
 const secret= 'asehbfufvihncugbcb78bicgn8bcr797cby';
