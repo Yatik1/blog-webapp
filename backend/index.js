@@ -30,7 +30,7 @@ app.use('/uploads' , express.static(__dirname + '/uploads'))
 
 
 app.get('/register' , (req,res) => {
-    res.json('test ok2');
+    return res.json('test ok2');
 });
 
 app.post('/register' , async (req,res) => {
