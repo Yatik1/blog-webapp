@@ -15,6 +15,8 @@ dotenv.config();
 
 const app = express();
 
+const PORT = 4000
+
 const salt = bcrypt.genSaltSync(10);
 const secret= 'asehbfufvihncugbcb78bicgn8bcr797cby';
 
@@ -24,8 +26,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/uploads' , express.static(__dirname + '/uploads'))
+ 
 
-mongoose.connect(process.env.URI);
 
 app.get('/register' , (req,res) => {
     res.json('test ok2');
@@ -154,6 +156,16 @@ app.get('/post/:id' , async (req,res) => {
   res.json(postDoc)
 })
 
-app.listen(4000 , ()=> {
-  console.log("Server is on ! ")
+mongoose.connect(process.env.URI , {
+  useUnifiedTopology:true,
+  useNewUrlParser:true
 })
+  .then(() => {
+   console.log("database is connected !")
+   app.listen(PORT , () => {
+  console.log(`App is listening to the port : ${PORT}`)  
+})
+  })
+ .catch((err) => {
+  console.log(err);
+ })
